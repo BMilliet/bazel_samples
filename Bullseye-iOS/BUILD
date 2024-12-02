@@ -1,10 +1,29 @@
-load("@build_bazel_rules_apple//apple:ios.bzl", "ios_application")
+load("@build_bazel_rules_apple//apple:ios.bzl", "ios_application", "ios_unit_test")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
+swift_library(
+    name = "tests",
+    srcs = glob(["BullseyeTests/*.swift"]),
+    visibility = ["//visibility:private"],
+    deps = [":lib"],
+    module_name = "BullseyeTests",
+    testonly = True
+)
 
 swift_library(
     name = "lib",
     srcs = glob(["Bullseye/Sources/*.swift"]),
-    visibility = ["//visibility:private"]
+    visibility = ["//visibility:private"],
+    module_name = "Bullseye"
+)
+
+ios_unit_test(
+    name = "ios-tests",
+    deps = [":tests"],
+    minimum_os_version = "15.0",
+    test_host = ":bullseye",
+    platform_type = "ios",
+    visibility = ["//visibility:public"],
 )
 
 ios_application(
