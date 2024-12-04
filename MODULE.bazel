@@ -4,3 +4,7 @@
 #
 # For more details, please check https://github.com/bazelbuild/bazel/issues/18958
 ###############################################################################
+
+bazel_dep(name = "rules_apple", version = "3.13.0")
+bazel_dep(name = "rules_swift", version = "2.2.4")
+bazel_dep(name = "rules_xcodeproj", version = "2.9.2")

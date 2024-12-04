@@ -6,5 +6,6 @@ target 'PodSampleProj' do
   use_frameworks!
 
   # Pods for PodSampleProj
+  pod 'Alamofire', '~> 5.10'
 
 end
