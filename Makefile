@@ -12,3 +12,6 @@ bullseye_test:
 
 bullseye_build:
 	bazel build //Bullseye-iOS:ios-tests
+
+swiftuiproj:
+	bazel build //SwiftUISampleProj:SwiftUISampleProj
