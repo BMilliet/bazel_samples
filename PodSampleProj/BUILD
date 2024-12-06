@@ -12,7 +12,16 @@ swift_library(
     name = "lib",
     srcs = glob(["PodSampleProj/*.swift"]),
     visibility = ["//visibility:private"],
-    module_name = "PodSampleProj"
+    module_name = "PodSampleProj",
+    deps = [":alamofire"]
+)
+
+# create lib for the added pod
+swift_library(
+    name = "alamofire",
+    srcs = glob(["Pods/Alamofire/Source/**/*.swift"]),
+    visibility = ["//visibility:private"],
+    module_name = "Alamofire",
 )
 
 ios_application(
@@ -26,7 +35,7 @@ ios_application(
         "PodSampleProj/Assets.xcassets/**",
         "PodSampleProj/Base.lproj/**"
         ]),
-    minimum_os_version = "15.0",
+    minimum_os_version = "16.0",
     visibility = ["//visibility:public"],
     deps = [":lib"],
 )
