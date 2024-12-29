@@ -17,14 +17,14 @@ load(
 swift_library(
     name = "Lib",
     srcs = glob(["SwiftUISampleProj/*.swift"]),
-    # data = [":PreviewContent"],
+    data = [":PreviewContent"],
     visibility = ["//visibility:private"],
 )
 
-# filegroup(
-#     name = "PreviewContent",
-#     srcs = glob(["SwiftUISampleProj/PreviewContent/**"]),
-# )
+filegroup(
+    name = "PreviewContent",
+    srcs = glob(["SwiftUISampleProj/PreviewContent/**"]),
+)
 
 ios_application(
     name = "SwiftUISampleProj",
