@@ -1,28 +1,34 @@
 load(
-    "@rules_apple//apple:ios.bzl",
+    "@build_bazel_rules_apple//apple:ios.bzl",
     "ios_application",
     "ios_unit_test"
 )
 
 load(
-    "@rules_swift//swift:swift.bzl",
-    "swift_library",
+    "@build_bazel_rules_swift//swift:swift.bzl",
+    "swift_library"
+)
+
+load(
+    "@rules_xcodeproj//xcodeproj:defs.bzl",
+    "top_level_target",
+    "xcodeproj",
 )
 
 swift_library(
     name = "tests",
     srcs = glob(["BullseyeTests/*.swift"]),
     visibility = ["//visibility:private"],
-    deps = [":lib"],
+    deps = [":app.lib"],
     module_name = "BullseyeTests",
     testonly = True
 )
 
 swift_library(
-    name = "lib",
+    name = "app.lib",
     srcs = glob(["Bullseye/Sources/*.swift"]),
     visibility = ["//visibility:private"],
-    module_name = "Bullseye"
+    module_name = "app"
 )
 
 ios_unit_test(
@@ -44,5 +50,5 @@ ios_application(
     resources = glob(["Bullseye/App/Assets.xcassets/**"]),
     minimum_os_version = "15.0",
     visibility = ["//visibility:public"],
-    deps = [":lib"],
+    deps = [":app.lib"],
 )

@@ -1,11 +1,17 @@
 load(
-    "@rules_apple//apple:ios.bzl",
-    "ios_application",
+    "@build_bazel_rules_apple//apple:ios.bzl",
+    "ios_application"
 )
 
 load(
-    "@rules_swift//swift:swift.bzl",
-    "swift_library",
+    "@build_bazel_rules_swift//swift:swift.bzl",
+    "swift_library"
+)
+
+load(
+    "@rules_xcodeproj//xcodeproj:defs.bzl",
+    "top_level_target",
+    "xcodeproj",
 )
 
 swift_library(
