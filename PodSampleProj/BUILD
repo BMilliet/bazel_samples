@@ -45,3 +45,15 @@ ios_application(
     visibility = ["//visibility:public"],
     deps = [":lib"],
 )
+
+xcodeproj(
+    name = "xcodeproj",
+    project_name = "App",
+    tags = ["manual"],
+    top_level_targets = [
+        top_level_target(
+            ":PodSampleProj",
+            target_environments = ["simulator"]
+        )
+    ],
+)

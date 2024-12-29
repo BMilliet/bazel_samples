@@ -15,17 +15,16 @@ load(
 )
 
 swift_library(
-    name = "app.lib",
+    name = "Lib",
     srcs = glob(["SwiftUISampleProj/*.swift"]),
-    data = [":PreviewContent"],
+    # data = [":PreviewContent"],
     visibility = ["//visibility:private"],
-    module_name = "app",
 )
 
-filegroup(
-    name = "PreviewContent",
-    srcs = glob(["SwiftUISampleProj/PreviewContent/**"]),
-)
+# filegroup(
+#     name = "PreviewContent",
+#     srcs = glob(["SwiftUISampleProj/PreviewContent/**"]),
+# )
 
 ios_application(
     name = "SwiftUISampleProj",
@@ -40,14 +39,17 @@ ios_application(
     minimum_os_version = "16.0",
     executable_name = "SwiftUISampleProj",
     visibility = ["//visibility:public"],
-    deps = [":app.lib"],
+    deps = [":Lib"],
 )
 
 xcodeproj(
     name = "xcodeproj",
-    project_name = "SwiftUISampleProj",
+    project_name = "App",
     tags = ["manual"],
     top_level_targets = [
-        top_level_target(":SwiftUISampleProj", target_environments = ["simulator"])
+        top_level_target(
+            ":SwiftUISampleProj",
+            target_environments = ["simulator"]
+        )
     ],
 )

@@ -16,7 +16,7 @@ load(
 )
 
 swift_library(
-    name = "tests",
+    name = "tests.lib",
     srcs = glob(["BullseyeTests/*.swift"]),
     visibility = ["//visibility:private"],
     deps = [":app.lib"],
@@ -32,9 +32,10 @@ swift_library(
 )
 
 ios_unit_test(
-    name = "ios-tests",
-    deps = [":tests"],
+    name = "Tests",
+    deps = [":tests.lib"],
     minimum_os_version = "15.0",
+    infoplists = ["BullseyeTests/App/Info.plist"],
     test_host = ":BullseyeApp",
     platform_type = "ios",
     visibility = ["//visibility:public"],
@@ -51,4 +52,17 @@ ios_application(
     minimum_os_version = "15.0",
     visibility = ["//visibility:public"],
     deps = [":app.lib"],
+)
+
+xcodeproj(
+    name = "xcodeproj",
+    project_name = "App",
+    tags = ["manual"],
+    top_level_targets = [
+        top_level_target(
+            ":BullseyeApp",
+            target_environments = ["simulator"]
+        ),
+        ":Tests"
+    ],
 )
