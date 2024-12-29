@@ -28,20 +28,20 @@ swift_library(
     name = "app.lib",
     srcs = glob(["Bullseye/Sources/*.swift"]),
     visibility = ["//visibility:private"],
-    module_name = "app"
+    module_name = "Bullseye"
 )
 
 ios_unit_test(
     name = "ios-tests",
     deps = [":tests"],
     minimum_os_version = "15.0",
-    test_host = ":bullseye",
+    test_host = ":BullseyeApp",
     platform_type = "ios",
     visibility = ["//visibility:public"],
 )
 
 ios_application(
-    name = "bullseye",
+    name = "BullseyeApp",
     bundle_id = "com.example.bullseye",
     families = [
         "iphone",
